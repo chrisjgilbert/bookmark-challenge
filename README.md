@@ -1,12 +1,13 @@
 # Bookmark Manager  
-
 ```
 As a user
 So that I can quickly go to web sites I regularly visit
 I would like to see a list of bookmarks
 ```
+## How to use
+`bundle`
 
-##  How to use db
+##  Set up the databse
 1. Connect to psql
 2. Create the database using the psql command `CREATE DATABASE bookmark_manager;`
 3. Connect to the database using the pqsl command `\c bookmark_manager;`
