@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bookmark Manager</title>
+  </head>
+  <body>
+    <h1>Bookmarks:</h1><br>
+    <ul>
+      <ul>
+        <% @bookmarks.each do |bookmark| %>
+          <li><%= bookmark %></li>
+        <% end %>
+      </ul>
+    </ul>
+  </body>
+</html>
