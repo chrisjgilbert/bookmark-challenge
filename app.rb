@@ -3,8 +3,6 @@ require_relative './lib/bookmark.rb'
 
 class BookmarkManager < Sinatra::Base
 
-  # Set up the Bookmark model to use the bookmark_manager database when we are in the development environment, and the bookmark_manager_test database when we are in the test database.
-
   get '/bookmarks' do
     erb :'bookmarks'
   end
@@ -12,6 +10,15 @@ class BookmarkManager < Sinatra::Base
   get '/bookmarks/index' do
     @bookmarks = Bookmark.all
     erb :'bookmarks/index'
+  end
+
+  get '/bookmarks/new' do
+    erb :'bookmarks/new'
+  end
+
+  post '/bookmarks' do
+    Bookmark.create(url: params[:url])
+    redirect :'/bookmarks/index'
   end
 
   run! if app_file == $0
