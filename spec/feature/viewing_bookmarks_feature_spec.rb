@@ -8,7 +8,7 @@ feature 'viewing bookmarks' do
     connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.destroyallsoftware.com');")
     connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.google.com');")
 
-    visit '/bookmarks'
+    visit '/'
     click_button 'View Index'
 
     expect(page).to have_content "http://www.makersacademy.com"

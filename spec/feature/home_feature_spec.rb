@@ -1,6 +1,6 @@
 feature 'welcome' do
   scenario 'visting home page' do
-    visit '/bookmarks'
+    visit '/'
     expect(page).to have_content 'Hello'
   end
 end
