@@ -36,4 +36,17 @@ describe Bookmark do
     end
   end
 
+  describe '.update' do
+    it 'updates a bookmark' do
+      bookmark = Bookmark.create(url: 'http://www.facebook.com', title: 'Facebook')
+      expect(Bookmark.all.first.id).to eq bookmark.id
+      expect(Bookmark.all.first.title).to eq bookmark.title
+      expect(Bookmark.all.first.url).to eq bookmark.url
+      Bookmark.update(id: bookmark.id, title: "New Title", url: "www.newurl.com")
+      expect(Bookmark.all.first.id).to eq bookmark.id
+      expect(Bookmark.all.first.title).to eq 'New Title'
+      expect(Bookmark.all.first.url).to eq 'www.newurl.com'
+    end
+  end
+
 end

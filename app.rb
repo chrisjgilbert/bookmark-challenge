@@ -28,6 +28,16 @@ class BookmarkManager < Sinatra::Base
     redirect 'bookmarks/index'
   end
 
+  get '/bookmarks/:id/update' do
+    @bookmark_id = params[:id]
+    erb :'bookmarks/update'
+  end
+
+  patch '/bookmarks/:id' do
+    Bookmark.update(id: params[:id], title: params[:title], url: params[:url])
+    redirect '/bookmarks/index'
+  end
+
   run! if app_file == $0
 
 end
