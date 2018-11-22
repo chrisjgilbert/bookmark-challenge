@@ -5,10 +5,10 @@
     <title>Bookmark Manager</title>
   </head>
   <body>
-    <form action="/bookmarks/<%= @bookmark_id %>" method="post">
+    <form action="/bookmarks/<%= @bookmark.id %>" method="post">
       <input type="hidden" name="_method" value="PATCH">
-      <input type="text" name="title" placeholder="title">
-      <input type="text" name="url" placeholder="url">
+      <input type="text" name="title" placeholder="title" value="<%= @bookmark.title %>">
+      <input type="text" name="url" placeholder="url" value="<%= @bookmark.url %>">
       <input type="submit" value="Submit">
     </form>
   </body>
