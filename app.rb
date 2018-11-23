@@ -42,6 +42,12 @@ class BookmarkManager < Sinatra::Base
     redirect '/bookmarks/index'
   end
 
+  get '/bookmarks/:id/comments/new' do
+    @bookmark = Bookmark.find(id: params[:id])
+    @bookmark_id = params[:id]
+    erb :'comments/new'
+  end
+
   run! if app_file == $0
 
 end

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bookmark Manager</title>
+  </head>
+  <body>
+    <h1>Add New Comment</h1>
+    <form action="/bookmarks/comments" method="post">
+      <p><%= @bookmark.title %></p>
+      <p><%= @bookmark.url %></p>
+      <input type="comment" name="comment" placeholder="comment">
+      <input type="submit" value="Add New Comment">
+    </form>
+    <form action="/" method="get">
+      <input type="submit" value="Main Menu">
+    </form>
+  </body>
+</html>
