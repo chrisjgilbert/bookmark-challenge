@@ -17,5 +17,7 @@ feature 'adding bookmarks' do
     fill_in :url, with: 'this is not a valid url'
     click_button 'Add New Bookmark'
     expect(page).to have_content('Invalid URL!')
+    expect(page).not_to have_content 'this is not a valid url'
+    expect(page).not_to have_content 'Test Bookmark'
   end
 end

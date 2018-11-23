@@ -1,15 +1,8 @@
 require 'pg'
+require 'uri'
 require_relative './database_connection.rb'
 
 class Bookmark
-
-  attr_reader :id, :title, :url
-
-  def initialize(id:, title:, url:)
-    @id = id
-    @title = title
-    @url = url
-  end
 
   def self.all
     result = DatabaseConnection.query("SELECT * FROM bookmarks")
@@ -23,6 +16,7 @@ class Bookmark
   end
 
   def self.create(title:, url:)
+    return false unless is_url?(url)
     result = DatabaseConnection.query("INSERT INTO bookmarks (title, url) VALUES ('#{title}', '#{url}') RETURNING id, title, url;")
     Bookmark.new(
       id: result[0]['id'],
@@ -51,6 +45,20 @@ class Bookmark
       title: result[0]['title'],
       url: result[0]['url']
     )
+  end
+
+  attr_reader :id, :title, :url
+
+  def initialize(id:, title:, url:)
+    @id = id
+    @title = title
+    @url = url
+  end
+
+  private
+
+  def self.is_url?(url)
+    url =~ /\A#{URI::regexp(['http', 'https'])}\z/
   end
 
 end

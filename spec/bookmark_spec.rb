@@ -18,13 +18,18 @@ describe Bookmark do
   end
 
   describe '.create' do
-    it 'creates a new bookmark' do
+    it 'creates a new bookmark if url is valid' do
       bookmark = Bookmark.create(url: 'http://www.testbookmark.com', title: 'Test Bookmark')
       persisted_data = persisted_data(id: bookmark.id)
       expect(bookmark).to be_a Bookmark
       expect(bookmark.id).to eq persisted_data['id']
       expect(bookmark.title).to eq 'Test Bookmark'
       expect(bookmark.url).to eq 'http://www.testbookmark.com'
+    end
+
+    it 'does not create a url with an invalid url' do
+      bookmark = Bookmark.create(url: 'blah blah blah', title: 'Bad Bookmark')
+      expect(bookmark).not_to be_a Bookmark
     end
   end
 
