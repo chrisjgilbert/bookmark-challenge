@@ -3,6 +3,7 @@ require 'sinatra/flash'
 require 'uri'
 require_relative './lib/bookmark.rb'
 require_relative './lib/database_connection_setup.rb'
+require_relative './lib/comment'
 
 class BookmarkManager < Sinatra::Base
 
@@ -46,6 +47,11 @@ class BookmarkManager < Sinatra::Base
     @bookmark = Bookmark.find(id: params[:id])
     @bookmark_id = params[:id]
     erb :'comments/new'
+  end
+
+  post '/bookmarks/:id/comments' do
+    Comment.create(text: params[:comment], bookmark_id: params[:id])
+    redirect '/bookmarks/index'
   end
 
   run! if app_file == $0
